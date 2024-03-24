@@ -35,6 +35,7 @@ class UsuarioController extends Controller
 
         //Con paginación
         $usuarios = User::paginate(15);
+
         return view('usuarios.index',compact('usuarios'));
 
         //al usar esta paginacion, recordar poner en el el index.blade.php este codigo  {!! $usuarios->links() !!}
@@ -64,7 +65,8 @@ class UsuarioController extends Controller
             'name' => 'required|unique:users,name',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|same:confirm-password',
-            'roles' => 'required'
+            'roles' => 'required',
+            'ind_usuario' => 'required'
         ]);
 
         $input = $request->all();
@@ -116,7 +118,8 @@ class UsuarioController extends Controller
             'name' => 'required',
             'email' => 'required|email|unique:users,email,'.$id,
             'password' => 'same:confirm-password',
-            'roles' => 'required'
+            'roles' => 'required',
+            'ind_usuario' => 'required'
         ]);
 
         $input = $request->all();

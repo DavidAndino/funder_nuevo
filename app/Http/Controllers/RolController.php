@@ -25,11 +25,11 @@ class RolController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
-    {        
+    {
          //Con paginación
-         $roles = Role::paginate(5);
+         $roles = Role::paginate(15);
          return view('roles.index',compact('roles'));
-         //al usar esta paginacion, recordar poner en el el index.blade.php este codigo  {!! $roles->links() !!} 
+         //al usar esta paginacion, recordar poner en el el index.blade.php este codigo  {!! $roles->links() !!}
     }
 
     /**
@@ -55,11 +55,11 @@ class RolController extends Controller
             'name' => 'required|unique:roles,name',
             'permission' => 'required',
         ]);
-    
+
         $role = Role::create(['name' => $request->input('name')]);
         $role->syncPermissions($request->input('permission'));
-    
-        return redirect()->route('roles.index');                        
+
+        return redirect()->route('roles.index');
     }
 
     /**
@@ -86,7 +86,7 @@ class RolController extends Controller
         $rolePermissions = DB::table("role_has_permissions")->where("role_has_permissions.role_id",$id)
             ->pluck('role_has_permissions.permission_id','role_has_permissions.permission_id')
             ->all();
-    
+
         return view('roles.editar',compact('role','permission','rolePermissions'));
     }
 
@@ -103,14 +103,14 @@ class RolController extends Controller
             'name' => 'required',
             'permission' => 'required',
         ]);
-    
+
         $role = Role::find($id);
         $role->name = $request->input('name');
         $role->save();
-    
+
         $role->syncPermissions($request->input('permission'));
-    
-        return redirect()->route('roles.index');                        
+
+        return redirect()->route('roles.index');
     }
 
     /**
@@ -122,6 +122,6 @@ class RolController extends Controller
     public function destroy($id)
     {
         DB::table("roles")->where('id',$id)->delete();
-        return redirect()->route('roles.index');                        
+        return redirect()->route('roles.index');
     }
 }

@@ -7,8 +7,8 @@ use App\Http\Controllers\RolController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\AseguradoController;
+use App\Http\Controllers\BeneficiarioController;
 use App\Http\Controllers\PolizaController;
-use App\Http\Controllers\CopiaController;
 use App\Http\Controllers\ReporteController;
 /*
 |--------------------------------------------------------------------------
@@ -29,7 +29,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
 
 
 //y creamos un grupo de rutas protegidas para los controladores
@@ -39,6 +39,5 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('blogs', BlogController::class);
     Route::resource('asegurados', AseguradoController::class);
     Route::resource('polizas', PolizaController::class);
-    Route::resource('copias', CopiaController::class);
-    Route::resource('copias', ReporteController::class);
+    Route::resource('beneficiarios', BeneficiarioController::class);
 });
