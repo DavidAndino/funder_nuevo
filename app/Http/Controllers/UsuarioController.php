@@ -66,7 +66,7 @@ class UsuarioController extends Controller
             'email' => 'required|email|unique:users,email',
             'password' => 'required|same:confirm-password',
             'roles' => 'required',
-            'ind_usuario' => 'required'
+            'ind_usuario',
         ]);
 
         $input = $request->all();
@@ -119,7 +119,7 @@ class UsuarioController extends Controller
             'email' => 'required|email|unique:users,email,'.$id,
             'password' => 'same:confirm-password',
             'roles' => 'required',
-            'ind_usuario' => 'required'
+            'ind_usuario'
         ]);
 
         $input = $request->all();

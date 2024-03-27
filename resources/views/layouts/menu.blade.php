@@ -13,16 +13,20 @@
         <i class=" fas fa-users"></i><span>Asegurados</span>
     </a>
 
+    <a class="nav-link" href="/beneficiarios">
+        <i class=" fas fa-users"></i><span>Beneficiarios</span>
+    </a>
+
     <a class="nav-link" href="/polizas">
         <i class=""></i><span>Polizas</span>
     </a>
 
-    <a class="nav-link" href="/reportes">
-        <i class=" "></i><span>Reportes</span>
+    <a class="nav-link" href="/tipopolizas">
+        <i class=" "></i><span>Tipos de Póliza</span>
     </a>
 
-    <a class="nav-link" href="/copia">
-        <i class=" "></i><span>Copia de Seguridad de Base de Datos</span>
+    <a class="nav-link" href="/cajasrurales">
+        <i class=" "></i><span>Cajas Rurales</span>
     </a>
 
     <a class="nav-link" href="/blogs">

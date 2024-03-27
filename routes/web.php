@@ -9,7 +9,8 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\AseguradoController;
 use App\Http\Controllers\BeneficiarioController;
 use App\Http\Controllers\PolizaController;
-use App\Http\Controllers\ReporteController;
+use App\Http\Controllers\TipoPolizaController;
+use App\Http\Controllers\CajaRuralController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -40,4 +41,6 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('asegurados', AseguradoController::class);
     Route::resource('polizas', PolizaController::class);
     Route::resource('beneficiarios', BeneficiarioController::class);
+    Route::resource('tipopolizas', TipoPolizaController::class);
+    Route::resource('cajasrurales', CajaRuralController::class);
 });

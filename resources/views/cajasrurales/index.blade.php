@@ -1,51 +1,48 @@
 @extends('layouts.app')
 
 @section('content')
-    <section class="section">
+    <section class="section" >
         <div class="section-header" style="background-color:#6777ef">
-            <h1 class="page__heading" style="color:white">Usuarios</h1>
+            <h1 class="page__heading" style="color:white">Cajas Rurales</h1>
         </div>
         <div class="section-body">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-                            <a class="btn btn-warning" href="{{ route('usuarios.create') }}">Nuevo</a>
+                            <a class="btn btn-success" href="{{ route('cajasrurales.create') }}">Nueva</a>
 
-                            <table class="table table-striped mt-2 table-sm table-hover">
+                            <table class="table table-striped mt-2 table-sm">
                                 <thead style="background-color:#6777ef">
-                                    <th style="color:#fff;">Nº</th>
                                     <th style="display: none;">ID</th>
+                                    <th style="color:#fff;">Nº</th>
                                     <th style="color:#fff;">Nombre</th>
-                                    <th style="color:#fff;">E-mail</th>
-                                    <th style="color:#fff;">Rol</th>
+                                    <th style="color:#fff;">Departamento</th>
+                                    <th style="color:#fff;">Municipio</th>
+                                    <th style="color:#fff;">Aldea</th>
+                                    <th style="color:#fff;">Estado</th>
+                                    <th style="color:#fff;">Fecha Registro</th>
                                     <th style="color:#fff;">Acciones</th>
                                 </thead>
                                 <tbody>
                                     @php
                                         $i = 1;
                                     @endphp
-                                    @foreach ($usuarios as $usuario)
+                                    @foreach ($cajasrurales as $cajaRural)
                                         <tr>
                                             <td scope="row">{{$i++}}</td>
-                                            <td style="display: none;">{{ $usuario->id }}</td>
-                                            <td>{{ $usuario->name }}</td>
-                                            <td>{{ $usuario->email }}</td>
-                                            <td>
-                                                @if (!empty($usuario->getRoleNames()))
-                                                    @foreach ($usuario->getRoleNames() as $rolNombre)
-                                                        <h5><span class="badge badge-dark">{{ $rolNombre }}</span></h5>
-                                                    @endforeach
-                                                @endif
-                                            </td>
+                                            <td style="display: none;">{{ $cajaRural->COD_TIP_POLIZA }}</td>
+                                            <td>{{ $cajaRural->NOM_CAJA_RURAL }}</td>
 
+                                            <td>{{ $cajaRural->IND_CAJA_RURAL }}</td>
+                                            <td>{{ $cajaRural->FEC_REGISTRO }}</td>
                                             <td>
-                                                <a class="btn btn-info"
-                                                    href="{{ route('usuarios.edit', $usuario->id) }}">Editar</a>
+                                                <a class="btn btn-primary"
+                                                    href="{{ route('cajasrurales.edit', $cajaRural->COD_CAJA_RURAL) }}">Editar</a>
 
                                                 {!! Form::open([
                                                     'method' => 'DELETE',
-                                                    'route' => ['usuarios.destroy', $usuario->id],
+                                                    'route' => ['cajasrurales.destroy', $cajaRural->COD_CAJA_RURAL],
                                                     'style' => 'display:inline',
                                                 ]) !!}
                                                 {!! Form::submit('Borrar', ['class' => 'btn btn-danger']) !!}
@@ -57,7 +54,7 @@
                             </table>
                             <!-- Centramos la paginacion a la derecha -->
                             <div class="pagination justify-content-end">
-                                {!! $usuarios->links() !!}
+                                {!! $cajasrurales->links() !!}
                             </div>
 
                         </div>

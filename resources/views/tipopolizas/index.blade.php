@@ -3,49 +3,46 @@
 @section('content')
     <section class="section">
         <div class="section-header" style="background-color:#6777ef">
-            <h1 class="page__heading" style="color:white">Usuarios</h1>
+            <h1 class="page__heading" style="color:white">Tipos de Póliza</h1>
         </div>
         <div class="section-body">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-                            <a class="btn btn-warning" href="{{ route('usuarios.create') }}">Nuevo</a>
+                            <a class="btn btn-success" href="{{ route('tipopolizas.create') }}">Nuevo</a>
 
-                            <table class="table table-striped mt-2 table-sm table-hover">
+                            <table class="table table-striped mt-2 table-hover table-sm">
                                 <thead style="background-color:#6777ef">
                                     <th style="color:#fff;">Nº</th>
                                     <th style="display: none;">ID</th>
-                                    <th style="color:#fff;">Nombre</th>
-                                    <th style="color:#fff;">E-mail</th>
-                                    <th style="color:#fff;">Rol</th>
+                                    <th style="color:#fff;">Valor de Prima</th>
+                                    <th style="color:#fff;">Monto de Seguro</th>
+                                    <th style="color:#fff;">Estado</th>
+                                    <th style="color:#fff;">Usuario Registro</th>
+                                    <th style="color:#fff;">Fecha Registro</th>
                                     <th style="color:#fff;">Acciones</th>
                                 </thead>
                                 <tbody>
                                     @php
                                         $i = 1;
                                     @endphp
-                                    @foreach ($usuarios as $usuario)
+                                    @foreach ($tipopolizas as $tipoPoliza)
                                         <tr>
                                             <td scope="row">{{$i++}}</td>
-                                            <td style="display: none;">{{ $usuario->id }}</td>
-                                            <td>{{ $usuario->name }}</td>
-                                            <td>{{ $usuario->email }}</td>
+                                            <td style="display: none;">{{ $tipoPoliza->COD_TIP_POLIZA }}</td>
+                                            <td>{{ $tipoPoliza->VAL_PRIMA }}</td>
+                                            <td>{{ $tipoPoliza->MON_SEGURO }}</td>
+                                            <td>{{ $tipoPoliza->IND_TIP_POLIZA }}</td>
+                                            <td>{{ $tipoPoliza->USR_REGISTRO }}</td>
+                                            <td>{{ $tipoPoliza->FEC_REGISTRO }}</td>
                                             <td>
-                                                @if (!empty($usuario->getRoleNames()))
-                                                    @foreach ($usuario->getRoleNames() as $rolNombre)
-                                                        <h5><span class="badge badge-dark">{{ $rolNombre }}</span></h5>
-                                                    @endforeach
-                                                @endif
-                                            </td>
-
-                                            <td>
-                                                <a class="btn btn-info"
-                                                    href="{{ route('usuarios.edit', $usuario->id) }}">Editar</a>
+                                                <a class="btn btn-primary"
+                                                    href="{{ route('tipopolizas.edit', $tipoPoliza->COD_TIP_POLIZA) }}">Editar</a>
 
                                                 {!! Form::open([
                                                     'method' => 'DELETE',
-                                                    'route' => ['usuarios.destroy', $usuario->id],
+                                                    'route' => ['tipopolizas.destroy', $tipoPoliza->COD_TIP_POLIZA],
                                                     'style' => 'display:inline',
                                                 ]) !!}
                                                 {!! Form::submit('Borrar', ['class' => 'btn btn-danger']) !!}
@@ -57,9 +54,9 @@
                             </table>
                             <!-- Centramos la paginacion a la derecha -->
                             <div class="pagination justify-content-end">
-                                {!! $usuarios->links() !!}
+                                {!! $tipopolizas->links() !!}
                             </div>
-
+                            <!--color botones azul claro: info-->
                         </div>
                     </div>
                 </div>
